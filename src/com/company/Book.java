@@ -1,6 +1,7 @@
 package com.company;
 
 public class Book extends Record {
+
     private String title;
     private String author;
     private String isbn;

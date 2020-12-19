@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Notepad {
+
     private ArrayList<Record> records = new ArrayList<>();
 
     public void createPerson() {
@@ -22,18 +23,30 @@ public class Notepad {
         records.add(book);
     }
 
-    public void listRecords() {
+    public void createStickyNote() {
+        var stickyNote = new StickyNote();
+        stickyNote.setText(InputUtils.askString("Text"));
+        records.add(stickyNote);
+    }
 
-    //    int maxFirst = 0;
-    //    int maxLast = 0;
-    //    for (Person rec : records) {
-    //        maxFirst = Math.max(maxFirst, rec.getFirstName().length());
-    //        maxLast = Math.max(maxLast, rec.getLastName().length());
-    //    }
+    public void createRecurringAlarm() {
+        var recurringAlarm = new RecurringAlarm();
+        recurringAlarm.setText(InputUtils.askString("Text"));
+        recurringAlarm.setTime(InputUtils.askString("Time"));
+        records.add(recurringAlarm);
+    }
+
+    public void createReminder() {
+        var reminder = new Reminder();
+        reminder.setText(InputUtils.askString("Text"));
+        reminder.setTime(InputUtils.askString("Time"));
+        reminder.setDate(InputUtils.askString("Date"));
+        records.add(reminder);
+    }
+
+    public void listRecords() {
         for (Record rec : records) {
             System.out.println(rec);
-    //        var format = "%-" + maxFirst + "s %-"+ maxLast +"s %-8s %-12s %n";
-    //        System.out.printf(format, rec.getFirstName(), rec.getLastName(), rec.getPhone(), rec.getEmail());
         }
     }
 }

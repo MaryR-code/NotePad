@@ -1,24 +1,26 @@
 package com.company;
 
 public class Main {
+
     private static Notepad notepad = new Notepad();
 
     public static void main(String[] args) {
         boolean running = true;
-        System.out.println("Hello! I'm your Notepad");
+        System.out.println("Hello! I'm your Notepad.");
         while (running) {
-            var cmd = InputUtils.askString("Enter command (C,L,E,H)");
+            showHelp(1);
+            var cmd = InputUtils.askString("Enter command");
             switch (cmd) {
-                case "L":   // list
-                    listRecords();
-                    break;
-                case "C":   // create
+                case "c":   // create
+                case "C":
                     createRecord();
                     break;
-                case "H":   // help
-                    showHelp();
+                case "l":   // list
+                case "L":
+                    listRecords();
                     break;
-                case "E":   // exit
+                case "e":   // exit
+                case "E":
                     running = false;
                     break;
                 default:
@@ -33,22 +35,37 @@ public class Main {
     }
 
     private static void createRecord() {
-        var type = InputUtils.askString("Enter type (P,B)");
+        showHelp(2);
+        var type = InputUtils.askString("Enter type");
         switch (type) {
-            case "P":   // person
+            case "1":   // person
                 notepad.createPerson();
                 break;
-            case "B":   // book
+            case "2":   // book
                 notepad.createBook();
+                break;
+            case "3":   // sticky note
+                notepad.createStickyNote();
+                break;
+            case "4":   // recurring alarm
+                notepad.createRecurringAlarm();
+                break;
+            case "5":   // reminder
+                notepad.createReminder();
                 break;
             default:
                 System.out.println("Unknown type");
         }
     }
 
-    private static void showHelp() {
-        //System.out.println("This is very helpful help");
-        System.out.println("Commands: C=create, L=list, E=exit, H=help");
-        System.out.println("Types: P=person, B=book");
+    private static void showHelp(int help) {
+        switch (help) {
+            case 1:
+                System.out.println("Commands: C/create, L/list, E/exit");
+                break;
+            case 2:
+                System.out.println("Types: 1/person, 2/book, 3/sticky note, 4/recurring alarm, 5/reminder");
+                break;
+        }
     }
 }
