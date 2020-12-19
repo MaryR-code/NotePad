@@ -14,7 +14,7 @@ public class Reminder extends RecurringAlarm {
 
     @Override
     public String toString() {
-        var str = super.toString(); // наследуем ID, text, time из RecurringAlarm
-        return String.format("%s; date: %s", str, date);
+    //    var str = super.toString(); // наследуем ID, text, time из RecurringAlarm
+        return String.format("%s; date: %s", getText(), date);
     }
 }

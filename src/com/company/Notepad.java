@@ -30,18 +30,21 @@ public class Notepad {
     }
 
     public void createRecurringAlarm() {
+        createStickyNote();
+        int ind = records.size()-1;
         var recurringAlarm = new RecurringAlarm();
-        recurringAlarm.setText(InputUtils.askString("Text"));
+        recurringAlarm.setText(records.get(ind).toString());
         recurringAlarm.setTime(InputUtils.askString("Time"));
-        records.add(recurringAlarm);
+        records.set(ind, recurringAlarm);
     }
 
     public void createReminder() {
+        createRecurringAlarm();
+        int ind = records.size()-1;
         var reminder = new Reminder();
-        reminder.setText(InputUtils.askString("Text"));
-        reminder.setTime(InputUtils.askString("Time"));
+        reminder.setText(records.get(ind).toString());
         reminder.setDate(InputUtils.askString("Date"));
-        records.add(reminder);
+        records.set(ind, reminder);
     }
 
     public void listRecords() {

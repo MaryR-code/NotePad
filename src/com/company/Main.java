@@ -9,18 +9,15 @@ public class Main {
         System.out.println("Hello! I'm your Notepad.");
         while (running) {
             showHelp(1);
-            var cmd = InputUtils.askString("Enter command");
+            var cmd = InputUtils.askString("Enter command").toLowerCase();
             switch (cmd) {
                 case "c":   // create
-                case "C":
                     createRecord();
                     break;
                 case "l":   // list
-                case "L":
                     listRecords();
                     break;
                 case "e":   // exit
-                case "E":
                     running = false;
                     break;
                 default:

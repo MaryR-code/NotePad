@@ -14,7 +14,7 @@ public class RecurringAlarm extends StickyNote {
 
     @Override
     public String toString() {
-        var str = super.toString(); // наследуем ID, text из StickyNote
-        return String.format("%s; time: %s", str, time);
+    //    var str = super.toString(); // наследуем ID, text из StickyNote
+        return String.format("%s; time: %s", getText(), time);
     }
 }
