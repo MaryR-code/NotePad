@@ -31,6 +31,13 @@ public class Book extends Record {
     }
 
     @Override
+    public void askData() {
+        title = InputUtils.askString("Title");
+        author = InputUtils.askString("Author");
+        isbn = InputUtils.askString("ISBN");
+    }
+
+    @Override
     public String toString() {
         var str = super.toString(); // наследуем ID из Record
         return String.format("%s. title: %s; author: %s; isbn: %s", str, title, author, isbn);

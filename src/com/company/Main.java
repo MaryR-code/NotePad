@@ -33,26 +33,9 @@ public class Main {
 
     private static void createRecord() {
         showHelp(2);
-        var type = InputUtils.askString("Enter type");
-        switch (type) {
-            case "1":   // person
-                notepad.createPerson();
-                break;
-            case "2":   // book
-                notepad.createBook();
-                break;
-            case "3":   // sticky note
-                notepad.createStickyNote();
-                break;
-            case "4":   // recurring alarm
-                notepad.createRecurringAlarm();
-                break;
-            case "5":   // reminder
-                notepad.createReminder();
-                break;
-            default:
-                System.out.println("Unknown type");
-        }
+        var strType = InputUtils.askString("Enter type");
+        var type = RecordType.valueOf(strType);
+        notepad.createRecord(type);
     }
 
     private static void showHelp(int help) {
@@ -61,7 +44,7 @@ public class Main {
                 System.out.println("Commands: C/create, L/list, E/exit");
                 break;
             case 2:
-                System.out.println("Types: 1/person, 2/book, 3/sticky note, 4/recurring alarm, 5/reminder");
+                System.out.println("Types: PERSON, BOOK, NOTE, ALARM, REMINDER");
                 break;
         }
     }

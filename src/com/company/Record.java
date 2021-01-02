@@ -1,6 +1,6 @@
 package com.company;
 
-public abstract class Record {
+public abstract class Record {      // абстрактный класс
     private static int counter = 0;
     private int id;
 
@@ -17,4 +17,7 @@ public abstract class Record {
     public String toString() {
         return String.format("%d", id);
     }
+
+    public abstract void askData();
+    // абстрактный метод (можно создавать только в абстрактном классе)
 }

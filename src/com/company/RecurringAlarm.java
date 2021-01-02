@@ -13,8 +13,14 @@ public class RecurringAlarm extends StickyNote {
     }
 
     @Override
+    public void askData() {
+        super.askData();
+        time = InputUtils.askString("Time");
+    }
+
+    @Override
     public String toString() {
-    //    var str = super.toString(); // наследуем ID, text из StickyNote
-        return String.format("%s; time: %s", getText(), time);
+        var str = super.toString(); // наследуем ID, text из StickyNote
+        return String.format("%s; time: %s", str, time);
     }
 }
