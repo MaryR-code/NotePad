@@ -15,7 +15,7 @@ public class RecurringAlarm extends StickyNote {
     @Override
     public void askData() {
         super.askData();
-        time = InputUtils.askString("Time");
+        time = InputUtils.askString("Enter time");
     }
 
     @Override

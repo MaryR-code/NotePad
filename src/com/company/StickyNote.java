@@ -14,7 +14,7 @@ public class StickyNote extends Record {
 
     @Override
     public void askData() {
-        text = InputUtils.askString("Text");
+        text = InputUtils.askString("Enter text");
     }
 
     @Override

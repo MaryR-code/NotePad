@@ -9,4 +9,10 @@ public class InputUtils {
         System.out.print(message + ": ");
         return scanner.next();
     }
+
+    public static SpeciesType askSpecies(String message) {
+        Main.showHelp(3);
+        var strType = InputUtils.askString(message);
+        return SpeciesType.valueOf(strType);
+    }
 }

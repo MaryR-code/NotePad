@@ -32,9 +32,9 @@ public class Book extends Record {
 
     @Override
     public void askData() {
-        title = InputUtils.askString("Title");
-        author = InputUtils.askString("Author");
-        isbn = InputUtils.askString("ISBN");
+        title = InputUtils.askString("Enter title");
+        author = InputUtils.askString("Enter author");
+        isbn = InputUtils.askString("Enter ISBN");
     }
 
     @Override

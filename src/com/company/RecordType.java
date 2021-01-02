@@ -30,6 +30,12 @@ public enum RecordType {
         public Record createRecord() {
             return new Reminder();
         }
+    },
+    PET {
+        @Override
+        public Record createRecord() {
+            return new Pet();
+        }
     };
 
     public abstract Record createRecord();

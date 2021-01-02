@@ -38,13 +38,24 @@ public class Main {
         notepad.createRecord(type);
     }
 
-    private static void showHelp(int help) {
+    public static void showHelp(int help) {
         switch (help) {
             case 1:
                 System.out.println("Commands: C/create, L/list, E/exit");
                 break;
             case 2:
-                System.out.println("Types: PERSON, BOOK, NOTE, ALARM, REMINDER");
+                System.out.print("Record types: ");
+                for (RecordType r : RecordType.values()) {
+                    System.out.print(r+"/ ");
+                };
+                System.out.println();
+                break;
+            case 3:
+                System.out.print("Species types: ");
+                for (SpeciesType s : SpeciesType.values()) {
+                    System.out.print(s+"/ ");
+                };
+                System.out.println();
                 break;
         }
     }
