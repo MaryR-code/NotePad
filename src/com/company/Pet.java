@@ -24,7 +24,9 @@ public class Pet extends Record {
     @Override
     public void askData() {
         name = InputUtils.askString("Enter name");
-        species = InputUtils.askSpecies("Enter species");
+        OutputUtils.showHelp(3);
+        var strType = InputUtils.askString("Enter species");
+        species = SpeciesType.valueOf(strType);
     }
 
     @Override
