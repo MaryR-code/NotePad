@@ -14,6 +14,7 @@ public class Notepad {
 
     public void createRecord(RecordType recType) {
         var rec = recType.createRecord();
+        rec.setType(recType);
         rec.askData();
         records.add(rec);
         System.out.println("CREATED: " + rec);
@@ -22,7 +23,8 @@ public class Notepad {
     public void saveNotepad() {
         try (var out = new PrintWriter(notepadFile)) {
             for (var rec : records) {
-                out.printf("%s\n", rec);
+                out.println(rec.getType()); // сохраним тип рекорда
+                rec.saveRecord(out);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Cannot save notepad");
@@ -31,9 +33,12 @@ public class Notepad {
 
     public void loadNotepad() {
         try (var in = new Scanner(notepadFile)) {
-    //        while (in.hasNext()) {
-    //            records.add();
-    //        }
+            while (in.hasNext()) {
+                var recType = RecordType.valueOf(in.next());
+                var rec = recType.createRecord();
+                rec.loadRecord(in);
+                records.add(rec);
+            }
         } catch (FileNotFoundException e) {
             System.out.println("Cannot load notepad");
         }

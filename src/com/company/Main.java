@@ -5,7 +5,7 @@ public class Main {
     private static Notepad notepad = new Notepad();
 
     public static void main(String[] args) {
-    //    loadNotepad();
+        loadNotepad();
         boolean running = true;
         System.out.println("Hello! I'm your Notepad.");
         while (running) {
@@ -33,9 +33,9 @@ public class Main {
         notepad.saveNotepad();
     }
 
-//    private static void loadNotepad() {
-//        notepad.loadNotepad();
-//    }
+    private static void loadNotepad() {
+        notepad.loadNotepad();
+    }
 
     private static void listRecords() {
         notepad.listRecords();

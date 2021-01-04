@@ -1,5 +1,8 @@
 package com.company;
 
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 public class Person extends Record {
 
     private String firstName;
@@ -38,6 +41,12 @@ public class Person extends Record {
     }
 
     @Override
+    public String toString() {
+        var str = super.toString(); // наследуем ID из Record
+        return String.format("%s. first name: %s; last name: %s; phone: %s; email: %s", str, firstName, lastName, phone, email);
+    }
+
+    @Override
     public void askData() {
         firstName = InputUtils.askString("First name");
         lastName = InputUtils.askString("Last name");
@@ -46,8 +55,20 @@ public class Person extends Record {
     }
 
     @Override
-    public String toString() {
-        var str = super.toString(); // наследуем ID из Record
-        return String.format("%s. first name: %s; last name: %s; phone: %s; email: %s", str, firstName, lastName, phone, email);
+    public void saveRecord(PrintWriter out) {
+        super.saveRecord(out);
+        out.println(firstName);
+        out.println(lastName);
+        out.println(phone);
+        out.println(email);
+    }
+
+    @Override
+    public void loadRecord(Scanner in) {
+        super.loadRecord(in);
+        firstName = in.next();
+        lastName = in.next();
+        phone = in.next();
+        email = in.next();
     }
 }
