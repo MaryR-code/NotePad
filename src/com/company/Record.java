@@ -28,7 +28,7 @@ public abstract class Record {      // абстрактный класс
 
     @Override
     public String toString() {
-        return String.format("%s %d", type.toString(), id);
+        return String.format("%d", id);
     }
 
     public abstract void askData();
