@@ -14,9 +14,16 @@ public class Main {
             switch (cmd) {
                 case "c":   // create
                     createRecord();
+                //    saveNotepad();
                     break;
                 case "l":   // list
                     listRecords();
+                    break;
+                case "d":   // delete
+                    deleteRecords();
+                    break;
+                case "f":   // find
+                    findRecords();
                     break;
                 case "e":   // exit
                     running = false;
@@ -27,6 +34,16 @@ public class Main {
         }
         saveNotepad();
         System.out.println("Good bye!");
+    }
+
+    private static void findRecords() {
+        var substr = InputUtils.askString("String to find");
+        notepad.find(substr);
+    }
+
+    private static void deleteRecords() {
+        int id = InputUtils.askInt("ID");
+        notepad.delete(id);
     }
 
     private static void saveNotepad() {

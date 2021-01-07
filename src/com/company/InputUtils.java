@@ -9,4 +9,9 @@ public class InputUtils {
         System.out.print(message + ": ");
         return scanner.next();
     }
+
+    public static int askInt(String message) {
+        System.out.print(message + ": ");
+        return scanner.nextInt();
+    }
 }

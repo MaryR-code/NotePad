@@ -14,7 +14,7 @@ public class Notepad {
 
     public void createRecord(RecordType recType) {
         var rec = recType.createRecord();
-        rec.setType(recType);
+    //    rec.setType(recType);
         rec.askData();
         records.add(rec);
         System.out.println("CREATED: " + rec);
@@ -50,4 +50,37 @@ public class Notepad {
         }
     }
 
+    public void delete(int id) {
+        var t = System.nanoTime();
+//        for (int i = 0; i < records.size(); i++) {
+//            var rec = records.get(i);
+//            if (rec.getId() == id) {
+//                records.remove(i);
+//                break;                    // чтобы не удалить больше одной записи
+//            }
+//        }
+        records.removeIf(rec -> rec.getId() == id);     // начиная с Java 8
+        System.out.println(System.nanoTime() - t);      // засекаем время для удаления записи
+    }
+
+    public void find(String substr) {
+        var tmp = substr.toLowerCase();
+    // OPTION 1
+//        for (int i = 0; i < records.size(); i++) {
+//            var rec = records.get(i);
+//            if (rec.contains(tmp)) {
+//                System.out.println(rec);
+//            }
+//        }
+    // OPTION 2
+        for (Record rec : records) {
+            if (rec.contains(tmp)) {
+                System.out.println(rec);
+            }
+        }
+    // OPTION 3 - СДЕЛАТЬ (из лекции 9 урок)
+//        records.stream()
+//                .filter()
+//                .forEach();
+    }
 }

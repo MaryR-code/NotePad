@@ -55,6 +55,9 @@ public class Person extends Record {
     }
 
     @Override
+    public RecordType getType() { return RecordType.PERSON; }
+
+    @Override
     public void saveRecord(PrintWriter out) {
         super.saveRecord(out);
         out.println(firstName);
@@ -70,5 +73,14 @@ public class Person extends Record {
         lastName = in.next();
         phone = in.next();
         email = in.next();
+    }
+
+    @Override
+    public boolean contains(String substr) {
+        return super.contains(substr)
+                || firstName.toLowerCase().contains(substr)
+                || lastName.toLowerCase().contains(substr)
+                || phone.toLowerCase().contains(substr)
+                || email.toLowerCase().contains(substr);
     }
 }

@@ -39,6 +39,9 @@ public class Pet extends Record {
     }
 
     @Override
+    public RecordType getType() { return RecordType.PET; }
+
+    @Override
     public void saveRecord(PrintWriter out) {
         super.saveRecord(out);
         out.println(name);
@@ -50,5 +53,13 @@ public class Pet extends Record {
         super.loadRecord(in);
         name = in.next();
         species = SpeciesType.valueOf(in.next());
+    }
+
+    @Override
+    public boolean contains(String substr) {
+        var strSpecies = species.toString();
+        return super.contains(substr)
+            || name.toLowerCase().contains(substr)
+            || strSpecies.toLowerCase().contains(substr);
     }
 }
