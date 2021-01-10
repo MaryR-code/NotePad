@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Person extends Record {
@@ -9,6 +10,7 @@ public class Person extends Record {
     private String lastName;
     private String phone;
     private String email;
+    private LocalDate birthdate;
 
     public String getFirstName() {
         return firstName;
@@ -40,10 +42,15 @@ public class Person extends Record {
         this.email = email;
     }
 
+    public LocalDate getBirthdate() { return birthdate; }
+
+    public void setBirthdate(LocalDate birthdate) { this.birthdate = birthdate; }
+
     @Override
     public String toString() {
         var str = super.toString(); // наследуем ID из Record
-        return String.format("%s. first name: %s; last name: %s; phone: %s; email: %s", str, firstName, lastName, phone, email);
+        return String.format("%s. first name: %s; last name: %s; phone: %s; email: %s; birthday: %s",
+                str, firstName, lastName, phone, email, InputUtils.dateToString(birthdate));
     }
 
     @Override
@@ -52,6 +59,7 @@ public class Person extends Record {
         lastName = InputUtils.askString("Last name");
         phone = InputUtils.askString("Phone");
         email = InputUtils.askString("Email");
+        birthdate = InputUtils.askDate("Enter date");
     }
 
     @Override
@@ -64,6 +72,7 @@ public class Person extends Record {
         out.println(lastName);
         out.println(phone);
         out.println(email);
+        out.println(birthdate);
     }
 
     @Override
@@ -73,6 +82,7 @@ public class Person extends Record {
         lastName = in.next();
         phone = in.next();
         email = in.next();
+        birthdate = InputUtils.stringToDate(in.next());  // 08.01.21
     }
 
     @Override
@@ -81,6 +91,7 @@ public class Person extends Record {
                 || firstName.toLowerCase().contains(substr)
                 || lastName.toLowerCase().contains(substr)
                 || phone.toLowerCase().contains(substr)
-                || email.toLowerCase().contains(substr);
+                || email.toLowerCase().contains(substr)
+                || InputUtils.dateToString(birthdate).toLowerCase().contains(substr);
     }
 }
