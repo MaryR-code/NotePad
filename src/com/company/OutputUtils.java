@@ -5,7 +5,7 @@ public class OutputUtils {
     public static void showHelp(int help) {
         switch (help) {
             case 1:
-                System.out.println("Commands - C (create), L (list), D (delete), F (find), E (exit)");
+                System.out.println("Commands - 1 (create), 2 (list), 3 (delete), 4 (find), 5 (due), 6 (dismiss), 0 (exit)");
                 break;
             case 2:
                 System.out.print("Types - ");

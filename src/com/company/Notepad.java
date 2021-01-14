@@ -78,9 +78,37 @@ public class Notepad {
                 System.out.println(rec);
             }
         }
-    // OPTION 3 - СДЕЛАТЬ (из лекции 9 урок)
+    // OPTION 3 - из лекции 9 урок - СДЕЛАТЬ
 //        records.stream()
 //                .filter()
 //                .forEach();
+    }
+
+    public void listDue() {
+        for (Record rec : records) {
+            if (rec instanceof Scheduled) {
+                var sch = (Scheduled) rec;    // приведение rec к типу RecurringAlarm
+                if (sch.isDue()) {
+                    System.out.println(sch);
+                }
+        //    } else if (rec instanceof Person) {
+        //        Person person = (Person) rec;
+        //        if (person.hasBirthdaySoon()) {
+        //            System.out.println(person);
+        //        }
+            }
+        }
+    }
+
+    public void dismiss(int id) {
+        for (Record rec : records) {
+            if (rec instanceof  Scheduled) {
+                var sch = (Scheduled) rec;
+                if (rec.getId() == id) {
+                    sch.dismiss();
+                    break;
+                }
+            }
+        }
     }
 }

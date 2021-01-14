@@ -2,12 +2,14 @@ package com.company;
 
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-public class RecurringAlarm extends StickyNote {
+public class RecurringAlarm extends StickyNote implements Scheduled {
 
     private LocalTime time;
+    private LocalDate dismissDate;
 
     public LocalTime getTime() {
         return time;
@@ -49,5 +51,15 @@ public class RecurringAlarm extends StickyNote {
     public boolean contains(String substr) {
         return super.contains(substr)
                 || InputUtils.timeToString(time).toLowerCase().contains(substr);
+    }
+
+    @Override
+    public boolean isDue() {
+        return !LocalDate.now().equals(dismissDate) && LocalTime.now().isAfter(time);
+    }
+
+    @Override
+    public void dismiss() {
+        dismissDate = LocalDate.now();
     }
 }

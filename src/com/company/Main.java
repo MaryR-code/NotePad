@@ -12,20 +12,26 @@ public class Main {
             OutputUtils.showHelp(1);
             var cmd = InputUtils.askString("Enter command").toLowerCase();
             switch (cmd) {
-                case "c":   // create
+                case "1":   // create
                     createRecord();
                 //    saveNotepad();
                     break;
-                case "l":   // list
+                case "2":   // list
                     listRecords();
                     break;
-                case "d":   // delete
+                case "3":   // delete
                     deleteRecords();
                     break;
-                case "f":   // find
+                case "4":   // find
                     findRecords();
                     break;
-                case "e":   // exit
+                case "5":   // due
+                    listDue();
+                    break;
+                case "6":   // dismiss
+                    dismiss();
+                    break;
+                case "0":   // exit
                     running = false;
                     break;
                 default:
@@ -34,6 +40,15 @@ public class Main {
         }
         saveNotepad();
         System.out.println("Good bye!");
+    }
+
+    private static void dismiss() {
+        int id = InputUtils.askInt("ID");
+        notepad.dismiss(id);
+    }
+
+    private static void listDue() {
+        notepad.listDue();
     }
 
     private static void findRecords() {

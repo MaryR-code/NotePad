@@ -2,11 +2,14 @@ package com.company;
 
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Scanner;
 
-public class Reminder extends RecurringAlarm {
+public class Reminder extends RecurringAlarm implements Scheduled {
 
     private LocalDate date;
+    private boolean active = true;
 
     public LocalDate getDate() {
         return date;
@@ -48,5 +51,16 @@ public class Reminder extends RecurringAlarm {
     public boolean contains(String substr) {
         return super.contains(substr)
                 || InputUtils.dateToString(date).toLowerCase().contains(substr);
+    }
+
+    @Override
+    public boolean isDue() {
+        var tmp = LocalDateTime.of(getDate(), getTime());
+        return active && LocalDateTime.now().isAfter(tmp);
+    }
+
+    @Override
+    public void dismiss() {
+        active = false;
     }
 }

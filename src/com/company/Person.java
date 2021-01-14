@@ -2,15 +2,18 @@ package com.company;
 
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Scanner;
 
-public class Person extends Record {
+public class Person extends Record implements Scheduled {
 
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
     private LocalDate birthdate;
+    private int dismissYear;
 
     public String getFirstName() {
         return firstName;
@@ -93,5 +96,17 @@ public class Person extends Record {
                 || phone.toLowerCase().contains(substr)
                 || email.toLowerCase().contains(substr)
                 || InputUtils.dateToString(birthdate).toLowerCase().contains(substr);
+    }
+
+    @Override
+    public boolean isDue() {
+        return (LocalDate.now().getYear() != dismissYear)
+                && (LocalDate.now().getMonth() == birthdate.getMonth())
+                && (LocalDate.now().getDayOfMonth() < birthdate.getDayOfMonth());
+    }
+
+    @Override
+    public void dismiss() {
+        dismissYear = LocalDate.now().getYear();
     }
 }
